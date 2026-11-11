@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="calculator-container">
+    <div class="calculator-card">
+      <!-- Header Controls -->
+      <header class="calc-header">
+        <div class="window-dots">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <div class="header-actions">
+          <button id="toggle-sound-btn" class="icon-btn" title="Toggle Sound" aria-label="Toggle Sound">
+            <svg id="sound-icon-on" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+            </svg>
+            <svg id="sound-icon-off" class="icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <line x1="23" y1="9" x2="17" y2="15"></line>
+              <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+          </button>
+          <button id="toggle-history-btn" class="icon-btn" title="Calculation History" aria-label="History">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Calculator Display Screen -->
+      <section class="display-section" aria-live="polite">
+        <div class="history-display" id="history-display" aria-label="Previous calculation"></div>
+        <div class="current-display" id="current-display" aria-label="Current value">0</div>
+      </section>
+
+      <!-- Scientific Mode Toggle -->
+      <div class="sub-bar">
+        <button id="toggle-scientific-btn" class="pill-btn">
+          <span>Scientific</span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <span class="keyboard-tip" title="Full keyboard support enabled">⌨️ Keypad Ready</span>
+      </div>
+
+      <!-- Scientific Extended Keys (Collapsible) -->
+      <div class="scientific-panel" id="scientific-panel">
+        <button class="btn btn-sci" data-action="sci-square" title="Square (x²)">x²</button>
+        <button class="btn btn-sci" data-action="sci-sqrt" title="Square Root (√x)">√x</button>
+        <button class="btn btn-sci" data-action="sci-inverse" title="Reciprocal (1/x)">1/x</button>
+        <button class="btn btn-sci" data-action="sci-pi" title="Pi (π)">π</button>
+      </div>
+
+      <!-- Main Keypad Grid -->
+      <main class="keypad-grid">
+        <!-- Row 1 -->
+        <button class="btn btn-action" data-action="all-clear" title="Clear All (Esc)">AC</button>
+        <button class="btn btn-action" data-action="delete" title="Backspace (Backspace)">⌫</button>
+        <button class="btn btn-action" data-action="percent" title="Percentage (%)">%</button>
+        <button class="btn btn-op" data-op="÷" title="Divide (/)">÷</button>
+
+        <!-- Row 2 -->
+        <button class="btn btn-num" data-num="7">7</button>
+        <button class="btn btn-num" data-num="8">8</button>
+        <button class="btn btn-num" data-num="9">9</button>
+        <button class="btn btn-op" data-op="×" title="Multiply (*)">×</button>
+
+        <!-- Row 3 -->
+        <button class="btn btn-num" data-num="4">4</button>
+        <button class="btn btn-num" data-num="5">5</button>
+        <button class="btn btn-num" data-num="6">6</button>
+        <button class="btn btn-op" data-op="−" title="Subtract (-)">−</button>
+
+        <!-- Row 4 -->
+        <button class="btn btn-num" data-num="1">1</button>
+        <button class="btn btn-num" data-num="2">2</button>
+        <button class="btn btn-num" data-num="3">3</button>
+        <button class="btn btn-op" data-op="+" title="Add (+)">+</button>
+
+        <!-- Row 5 -->
+        <button class="btn btn-num" data-action="negate" title="Toggle Positive/Negative (±)">±</button>
+        <button class="btn btn-num" data-num="0">0</button>
+        <button class="btn btn-num" data-action="decimal">.</button>
+        <button class="btn btn-equals" data-action="calculate" title="Equals (Enter)">=</button>
+      </main>
+
+      <!-- Slide-over History Drawer -->
+      <aside class="history-drawer" id="history-drawer" aria-hidden="true">
+        <div class="drawer-header">
+          <h3>History</h3>
+          <div class="drawer-actions">
+            <button id="clear-history-btn" class="text-btn" title="Clear calculation history">Clear</button>
+            <button id="close-history-btn" class="icon-btn" aria-label="Close history">✕</button>
+          </div>
+        </div>
+        <div class="history-list" id="history-list">
+          <div class="empty-state">No calculations yet</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
